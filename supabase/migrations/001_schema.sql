@@ -126,3 +126,15 @@ INSERT INTO delivery_prices (wilaya_number, wilaya_name_ar, wilaya_name_fr, home
 ('47', 'غرداية', 'Ghardaïa', 600, 450),
 ('48', 'غليزان', 'Relizane', 450, 350)
 ON CONFLICT (wilaya_number) DO NOTHING;
+
+-- ============================================================
+-- STORAGE BUCKET: product-images
+-- ============================================================
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('product-images', 'product-images', true) 
+ON CONFLICT (id) DO NOTHING;
+
+-- Storage RLS Policies
+CREATE POLICY "Public Access" ON storage.objects FOR SELECT USING (bucket_id = 'product-images');
+CREATE POLICY "Auth Insert" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'product-images' AND auth.role() = 'authenticated');
+CREATE POLICY "Auth Delete" ON storage.objects FOR DELETE USING (bucket_id = 'product-images' AND auth.role() = 'authenticated');
