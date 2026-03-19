@@ -177,7 +177,7 @@ export default function AdminDashboard() {
                       >
                         {statusOptions.map((s) => (
                           <option key={s} value={s} style={{ background: "#1a1a26", color: "#f0f0f8" }}>
-                            {STATUS_LABELS[s]} {t(s as keyof typeof t extends (k: infer K) => string ? K : never)}
+                            {STATUS_LABELS[s]} {t(s as any)}
                           </option>
                         ))}
                       </select>

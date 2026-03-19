@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase, Order } from "@/lib/supabase";
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const { t, lang } = useLanguage();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
@@ -84,6 +84,18 @@ export default function ThankYouPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-[var(--text-secondary)]">Loading...</div>
+      </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   );
 }
 

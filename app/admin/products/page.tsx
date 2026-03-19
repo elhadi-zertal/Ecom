@@ -193,7 +193,7 @@ export default function AdminProductsPage() {
               <input className="input-field text-sm" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} required dir="ltr" placeholder="product-slug" />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">{t("productPrice")}</label>
+              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">{t("productPriceAdmin")}</label>
               <input type="number" className="input-field text-sm" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} required dir="ltr" placeholder="2500" />
             </div>
             <div>
