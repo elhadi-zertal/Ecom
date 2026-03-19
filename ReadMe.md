@@ -3,7 +3,7 @@
 A full-stack e-commerce web app built for the Algerian market. Customers browse products, place orders with delivery details, and pay on delivery — no account required.
 
 🔗 **Live:** [ecom-dz.vercel.app](https://ecom-dz.vercel.app)
-
+> ⚠️ **Work in progress** — this project is still under active development. Some features may be incomplete or subject to change.
 ---
 
 ## ✨ Features
