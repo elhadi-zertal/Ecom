@@ -31,36 +31,43 @@ export default function OrderSummary({
   const total = deliveryFee !== null ? subtotal + deliveryFee : null;
 
   return (
-    <div className="glass-card p-5 space-y-3 sticky top-20">
-      <h3 className="font-bold text-base text-white border-b border-[var(--border)] pb-3">
+    <div
+      style={{
+        background: "#111111",
+        border: "1px solid #222222",
+        borderRadius: "14px",
+        padding: "1.25rem",
+      }}
+    >
+      <h3 className="font-semibold text-sm text-white mb-3 pb-3" style={{ borderBottom: "1px solid #1a1a1a" }}>
         {t("orderSummary")}
       </h3>
 
-      <div className="space-y-2 text-sm">
+      <div className="space-y-2 text-sm mb-3">
         <div className="flex justify-between items-center">
-          <span className="text-[var(--text-secondary)]">{t("productPrice")}</span>
+          <span className="text-[#888888]">{t("productPrice")}</span>
           <span className="text-white font-medium">
             {productPrice.toLocaleString()} × {quantity}
           </span>
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-[var(--text-secondary)]">{t("deliveryFee")}</span>
+          <span className="text-[#888888]">{t("deliveryFee")}</span>
           <span className="text-white font-medium">
             {deliveryFee !== null ? `${deliveryFee.toLocaleString()} ${t("da")}` : "—"}
           </span>
         </div>
 
         {!wilayaNumber && (
-          <p className="text-xs text-[var(--text-secondary)] italic text-center py-1">
+          <p className="text-xs text-[#555555] italic text-center py-1">
             {t("selectWilayaFirst")}
           </p>
         )}
       </div>
 
-      <div className="border-t border-[var(--border)] pt-3 flex justify-between items-center">
-        <span className="font-bold text-white">{t("total")}</span>
-        <span className="text-2xl font-black text-purple-400">
+      <div className="pt-3 flex justify-between items-center" style={{ borderTop: "1px solid #1a1a1a" }}>
+        <span className="font-semibold text-white text-sm">{t("total")}</span>
+        <span className="text-2xl font-black text-white" style={{ letterSpacing: "-0.03em" }}>
           {total !== null ? `${total.toLocaleString()} ${t("da")}` : "—"}
         </span>
       </div>

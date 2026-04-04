@@ -114,12 +114,12 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="glass-card p-6 space-y-6">
-        <h2 className="text-xl font-bold text-white">{t("orderFormTitle")}</h2>
+      <form onSubmit={handleSubmit} className="space-y-6" style={{ background: "#111111", border: "1px solid #222222", borderRadius: "14px", padding: "1.5rem" }}>
+        <h2 className="text-lg font-semibold text-white" style={{ letterSpacing: "-0.01em" }}>{t("orderFormTitle")}</h2>
 
         {/* Full name */}
         <div>
-          <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
+          <label className="block text-sm font-medium text-[#888888] mb-2">
             {t("fullName")}
           </label>
           <input
@@ -134,7 +134,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
 
         {/* Phone */}
         <div>
-          <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
+          <label className="block text-sm font-medium text-[#888888] mb-2">
             {t("phone")}
           </label>
           <input
@@ -158,7 +158,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
 
         {/* Delivery type */}
         <div>
-          <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-3">
+          <label className="block text-sm font-medium text-[#888888] mb-3">
             {t("deliveryType")}
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -167,10 +167,10 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
                 key={type}
                 type="button"
                 onClick={() => setForm({ ...form, deliveryType: type })}
-                className={`p-3 rounded-xl border text-sm font-semibold transition-all duration-200 ${
+                className={`p-3 rounded-xl border text-sm font-medium transition-all duration-200 ${
                   form.deliveryType === type
-                    ? "border-purple-500 bg-purple-500/15 text-purple-300"
-                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-purple-400"
+                    ? "border-white bg-white/10 text-white"
+                    : "border-[#222222] text-[#888888] hover:border-[#444444] hover:text-white"
                 }`}
               >
                 <span className="block text-lg mb-1">{type === "home" ? "🏠" : "🏢"}</span>
@@ -193,14 +193,14 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
 
         {/* Quantity */}
         <div>
-          <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
+          <label className="block text-sm font-medium text-[#888888] mb-2">
             {t("quantity")}
           </label>
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setForm({ ...form, quantity: Math.max(1, form.quantity - 1) })}
-              className="w-10 h-10 rounded-lg border border-[var(--border)] text-white font-bold text-xl flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors"
+              className="w-10 h-10 rounded-lg border border-[#222222] text-white font-bold text-xl flex items-center justify-center hover:border-[#555555] transition-colors duration-200"
             >
               −
             </button>
@@ -216,7 +216,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
             <button
               type="button"
               onClick={() => setForm({ ...form, quantity: form.quantity + 1 })}
-              className="w-10 h-10 rounded-lg border border-[var(--border)] text-white font-bold text-xl flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors"
+              className="w-10 h-10 rounded-lg border border-[#222222] text-white font-bold text-xl flex items-center justify-center hover:border-[#555555] transition-colors duration-200"
             >
               +
             </button>
@@ -226,7 +226,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
 
         {/* Note */}
         <div>
-          <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
+          <label className="block text-sm font-medium text-[#888888] mb-2">
             {t("note")}
           </label>
           <textarea

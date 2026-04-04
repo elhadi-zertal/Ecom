@@ -28,7 +28,7 @@ function ThankYouContent() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-[var(--text-secondary)]">{t("loading")}</div>
+      <div className="text-[#888888]">{t("loading")}</div>
       </div>
     );
   }
@@ -46,8 +46,8 @@ function ThankYouContent() {
 
       {/* Order details */}
       {order && (
-        <div className="glass-card p-6 space-y-4 animate-fade-in-up">
-          <h2 className="font-bold text-white text-lg border-b border-[var(--border)] pb-3">
+        <div className="animate-fade-in-up space-y-4 p-6" style={{ background: "#111111", border: "1px solid #222222", borderRadius: "14px" }}>
+          <h2 className="font-semibold text-white text-base pb-3" style={{ borderBottom: "1px solid #1a1a1a" }}>
             {t("orderDetails")}
           </h2>
 
@@ -68,9 +68,9 @@ function ThankYouContent() {
             )}
             {order.color && <Row label={t("orderColor")} value={order.color} />}
             <Row label={t("orderQuantity")} value={String(order.quantity)} />
-            <div className="flex justify-between items-center pt-3 border-t border-[var(--border)]">
+            <div className="flex justify-between items-center pt-3" style={{ borderTop: "1px solid #1a1a1a" }}>
               <span className="font-bold text-white text-base">{t("orderTotal")}</span>
-              <span className="text-2xl font-black text-purple-400">
+              <span className="text-2xl font-black text-white" style={{ letterSpacing: "-0.03em" }}>
                 {order.total.toLocaleString()} {t("da")}
               </span>
             </div>
@@ -91,7 +91,7 @@ export default function ThankYouPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-[var(--text-secondary)]">Loading...</div>
+        <div className="text-[#888888]">Loading...</div>
       </div>
     }>
       <ThankYouContent />
@@ -102,7 +102,7 @@ export default function ThankYouPage() {
 function Row({ label, value, dir }: { label: string; value: string; dir?: string }) {
   return (
     <div className="flex justify-between items-start gap-4">
-      <span className="text-[var(--text-secondary)] flex-shrink-0">{label}</span>
+      <span className="text-[#888888] flex-shrink-0">{label}</span>
       <span className="text-white font-medium text-end" dir={dir}>{value}</span>
     </div>
   );

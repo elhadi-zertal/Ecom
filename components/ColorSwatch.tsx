@@ -74,10 +74,10 @@ function isLightColor(hex: string): boolean {
 export default function ColorSwatch({ colors, selectedColor, onSelect, label, error }: ColorSwatchProps) {
   return (
     <div>
-      <label className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
+      <label className="block text-sm font-medium text-[#888888] mb-2">
         {label}
         {selectedColor && (
-          <span className="ms-2 text-purple-400 font-normal">{selectedColor}</span>
+          <span className="ms-2 text-white font-normal">{selectedColor}</span>
         )}
       </label>
       <div className="flex flex-wrap gap-3">
@@ -92,17 +92,19 @@ export default function ColorSwatch({ colors, selectedColor, onSelect, label, er
               type="button"
               onClick={() => onSelect(color)}
               title={color}
-              className={`relative w-10 h-10 rounded-full border-2 transition-all duration-200 flex-shrink-0 ${
-                isSelected
-                  ? "scale-110 shadow-lg"
-                  : "opacity-70 hover:opacity-100 hover:scale-105"
+              className={`relative w-9 h-9 rounded-full flex-shrink-0 transition-all duration-200 ${
+                isSelected ? "scale-110" : "opacity-60 hover:opacity-100 hover:scale-105"
               }`}
               style={{
                 backgroundColor: hex.startsWith("#") ? hex : undefined,
                 background: !hex.startsWith("#") ? hex : undefined,
-                borderColor: isSelected ? "#a855f7" : isLight ? "#6b7280" : "rgba(255,255,255,0.2)",
+                border: isSelected
+                  ? "2px solid #ffffff"
+                  : isLight
+                  ? "2px solid #555555"
+                  : "2px solid #333333",
                 boxShadow: isSelected
-                  ? `0 0 0 3px rgba(168,85,247,0.4), 0 4px 12px rgba(0,0,0,0.4)`
+                  ? "0 0 0 3px rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.5)"
                   : undefined,
               }}
             >
