@@ -209,13 +209,12 @@ export default function HomeClient({ products: initialProducts }: { products: Pr
                         📍 {t("review1Wilaya")}
                       </span>
                     </div>
-                    {/* Stars */}
                     <div className="text-[var(--accent-green)] text-xs font-bold tracking-wider">
                       ★★★★★
                     </div>
                   </div>
                   <p className="text-sm text-[#888888] leading-relaxed">
-                    "{t("review1Text")}"
+                    &ldquo;{t("review1Text")}&rdquo;
                   </p>
                 </div>
 
@@ -230,13 +229,12 @@ export default function HomeClient({ products: initialProducts }: { products: Pr
                         📍 {t("review2Wilaya")}
                       </span>
                     </div>
-                    {/* Stars */}
                     <div className="text-[var(--accent-green)] text-xs font-bold tracking-wider">
                       ★★★★★
                     </div>
                   </div>
                   <p className="text-sm text-[#888888] leading-relaxed">
-                    "{t("review2Text")}"
+                    &ldquo;{t("review2Text")}&rdquo;
                   </p>
                 </div>
 
@@ -251,13 +249,12 @@ export default function HomeClient({ products: initialProducts }: { products: Pr
                         📍 {t("review3Wilaya")}
                       </span>
                     </div>
-                    {/* Stars */}
                     <div className="text-[var(--accent-green)] text-xs font-bold tracking-wider">
                       ★★★★☆
                     </div>
                   </div>
                   <p className="text-sm text-[#888888] leading-relaxed">
-                    "{t("review3Text")}"
+                    &ldquo;{t("review3Text")}&rdquo;
                   </p>
                 </div>
               </div>
