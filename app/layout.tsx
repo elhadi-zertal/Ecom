@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { CartProvider } from "@/contexts/CartContext";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "متجر الجزائر | Boutique DZ",
@@ -25,8 +27,11 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
-          <Header />
-          <main className="min-h-screen pt-[60px]">{children}</main>
+          <CartProvider>
+            <Header />
+            <main className="min-h-screen pt-[60px]">{children}</main>
+            <Footer />
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

@@ -61,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <Link
           href={`/products/${product.slug}`}
-          className="btn-primary w-full text-sm py-[10px] mt-auto"
+          className="btn-emerald w-full text-sm py-[10px] mt-auto"
         >
           {t("orderNow")}
         </Link>

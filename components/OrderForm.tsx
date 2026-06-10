@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCart } from "@/contexts/CartContext";
 import { supabase, Product, DeliveryPrice } from "@/lib/supabase";
 import WilayaSelector from "./WilayaSelector";
 import ColorSwatch from "./ColorSwatch";
@@ -23,6 +24,7 @@ interface FormErrors {
 export default function OrderForm({ product, wilayas }: OrderFormProps) {
   const { t, lang } = useLanguage();
   const router = useRouter();
+  const { setCartCount, setActiveProductId, setActiveProductSlug } = useCart();
 
   const [form, setForm] = useState({
     name: "",
@@ -36,6 +38,17 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  useEffect(() => {
+    setCartCount(form.quantity);
+    setActiveProductId(product.id);
+    setActiveProductSlug(product.slug);
+    return () => {
+      setCartCount(0);
+      setActiveProductId(null);
+      setActiveProductSlug(null);
+    };
+  }, [form.quantity, product.id, product.slug, setCartCount, setActiveProductId, setActiveProductSlug]);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -101,7 +114,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
   };
 
   return (
-    <div>
+    <div id="order-form">
       {/* Live Order Summary */}
       <div className="mb-8">
         <OrderSummary
@@ -162,21 +175,34 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
             {t("deliveryType")}
           </label>
           <div className="grid grid-cols-2 gap-3">
-            {(["home", "desk"] as const).map((type) => (
-              <button
-                key={type}
-                type="button"
-                onClick={() => setForm({ ...form, deliveryType: type })}
-                className={`p-3 rounded-xl border text-sm font-medium transition-all duration-200 ${
-                  form.deliveryType === type
-                    ? "border-white bg-white/10 text-white"
-                    : "border-[#222222] text-[#888888] hover:border-[#444444] hover:text-white"
-                }`}
-              >
-                <span className="block text-lg mb-1">{type === "home" ? "🏠" : "🏢"}</span>
-                {type === "home" ? t("deliveryHome") : t("deliveryDesk")}
-              </button>
-            ))}
+            {(["home", "desk"] as const).map((type) => {
+              const selectedWilaya = wilayas.find((w) => w.wilaya_number === form.wilaya);
+              const fee = selectedWilaya
+                ? (type === "home" ? selectedWilaya.home_price : selectedWilaya.desk_price)
+                : null;
+              const feeLabel = fee !== null ? ` (+${fee} ${t("da")})` : "";
+
+              return (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => setForm({ ...form, deliveryType: type })}
+                  className={`p-3 rounded-xl border text-sm font-medium transition-all duration-200 flex flex-col items-center justify-center ${
+                    form.deliveryType === type
+                      ? "border-[var(--accent-green)] bg-[var(--accent-green)]/5 text-white"
+                      : "border-[#222222] text-[#888888] hover:border-[#444444] hover:text-white"
+                  }`}
+                >
+                  <span className="block text-lg mb-1">{type === "home" ? "🏠" : "🏢"}</span>
+                  <span>{type === "home" ? t("deliveryHome") : t("deliveryDesk")}</span>
+                  {feeLabel && (
+                    <span className="text-xs mt-1 text-[var(--accent-green)] font-semibold">
+                      {feeLabel}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -244,7 +270,7 @@ export default function OrderForm({ product, wilayas }: OrderFormProps) {
           </div>
         )}
 
-        <button type="submit" disabled={submitting} className="btn-primary w-full py-4 text-base">
+        <button type="submit" disabled={submitting} className="btn-emerald w-full py-4 text-base font-bold">
           {submitting ? t("submitting") : t("confirmOrder")}
         </button>
       </form>

@@ -52,11 +52,26 @@ export default function OrderSummary({
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-[#888888]">{t("deliveryFee")}</span>
+          <span className="text-[#888888]">
+            {t("deliveryFee")}{" "}
+            {deliveryFee !== null && (
+              <span className="text-xs text-[#555555]">
+                ({deliveryType === "home" ? t("deliveryHome") : t("deliveryDesk")})
+              </span>
+            )}
+          </span>
           <span className="text-white font-medium">
             {deliveryFee !== null ? `${deliveryFee.toLocaleString()} ${t("da")}` : "—"}
           </span>
         </div>
+
+        {selectedWilaya && (
+          <p className="text-[11px] text-[var(--accent-green)] text-center py-1 bg-[var(--accent-green)]/5 rounded-lg border border-[var(--accent-green)]/15">
+            {t("deliveryDetailHelper")
+              .replace("{home}", selectedWilaya.home_price.toString())
+              .replace("{desk}", selectedWilaya.desk_price.toString())}
+          </p>
+        )}
 
         {!wilayaNumber && (
           <p className="text-xs text-[#555555] italic text-center py-1">

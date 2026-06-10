@@ -16,6 +16,9 @@
   --text-secondary: #888888;
   --border: #222222;
   --border-hover: #333333;
+  --accent-green: #10b981;
+  --accent-green-hover: #059669;
+  --accent-teal: #0d9488;
 }
 
 * {
@@ -172,3 +175,76 @@ html[dir="rtl"] body {
 .status-confirmed { background: #001a0a; color: #4ade80; border: 1px solid #052e16; }
 .status-delivered { background: #00091a; color: #60a5fa; border: 1px solid #0c1a4b; }
 .status-canceled  { background: #1a0000; color: #f87171; border: 1px solid #3b0a0a; }
+
+/* Language Switcher Pill Toggle */
+.lang-toggle-pill {
+  display: inline-flex;
+  background: #111111;
+  border: 1px solid #222222;
+  border-radius: 9999px;
+  padding: 3px;
+  align-items: center;
+}
+.lang-toggle-btn {
+  padding: 4px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.lang-toggle-btn.active {
+  background: var(--accent-green);
+  color: #000000;
+}
+.lang-toggle-btn.inactive {
+  color: #888888;
+  background: transparent;
+}
+.lang-toggle-btn.inactive:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.03);
+}
+
+/* Pulsating Skeleton */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Emerald Button */
+.btn-emerald {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent-green);
+  color: #000000;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--accent-green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+.btn-emerald:hover {
+  background: transparent;
+  color: var(--accent-green);
+  box-shadow: 0 0 0 1px var(--accent-green);
+}
+.btn-emerald:active {
+  opacity: 0.85;
+}
+.btn-emerald:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
